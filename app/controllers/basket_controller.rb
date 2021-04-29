@@ -3,6 +3,10 @@ class BasketController < ApplicationController
   end
 
   def add_item
+    @id = params[:id]
+    @quantity = params[:quantity]
+    user_session[@id] = {quantity: @quantity, item: Item.find(@id)}
+    redirect_to basket_index_path
   end
 
   def remove_item

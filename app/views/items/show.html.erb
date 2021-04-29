@@ -15,5 +15,11 @@
   <%= @item.price %>
 </p>
 
+<%= form_with(url: "/basket/add_item/#{@item.id}", method: 'get', local: true) do |f| %>
+  <%= f.label(:quantity, 'Quantity') %>
+  <%= f.number_field(:quantity, id: :quantity) %>
+  <%= f.submit('Add to card') %>
+<% end %>
+
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

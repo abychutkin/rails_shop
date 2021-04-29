@@ -1,6 +1,31 @@
 <h1>Basket</h1>
 <% if user_session.any? %>
-   <p>You have something in your basket.</p>
+  <table>
+    <tr>
+      <th>Item name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <% user_session.each do |_, data| %>
+      <% item = data['item'] %>
+      <tr>
+        <td><%= item['name'] %></td>
+        <td><%= data['quantity'] %></td>
+        <td><%= item['price'] %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2">Total</td>
+      <td>
+        <% total = 0 %>
+        <% user_session.each do |_, data| %>
+          <% item = data['item'] %>
+          <% total += item['price'].to_f * data['quantity'].to_i %>
+        <% end %>
+        <%= total %>
+      </td>
+    </tr>
+  </table>
 <% else %>
    <p>Your basket is now empty, please <%= link_to 'add', root_path %> some items</p>
 <% end %>
