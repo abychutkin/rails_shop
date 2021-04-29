@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'basket/index'
+  get 'basket', to: 'basket#index'
+  get 'basket/add_item'
+  get 'basket/remove_item'
+  get 'basket/clear'
+  get 'basket/pay'
   resources :items
   devise_for :users
   root 'items#index'
