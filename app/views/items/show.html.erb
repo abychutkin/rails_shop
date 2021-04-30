@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% flash.each do |type, message| %>
-  <div><%= "#{type}: #{message}" %></div>
-  <br>
-<% end %>
+<%= render "flash" %>
 
 <p>
   <strong>Name:</strong>
