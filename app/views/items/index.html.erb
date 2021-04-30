@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Items</h1>
-
+<% flash.each do |type, message| %>
+  <div><%= "#{type}: #{message}" %></div>
+  <br>
+<% end %>
 <table>
   <thead>
     <tr>
