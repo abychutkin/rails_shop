@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'basket/index'
+  #get 'basket/index'
   get 'basket', to: 'basket#index'
   get 'basket/add_item', to: 'basket#index'
   get 'basket/add_item(/:id)', to: 'basket#add_item', constraints: {id: /\d+/, quantity: /\d+/}
