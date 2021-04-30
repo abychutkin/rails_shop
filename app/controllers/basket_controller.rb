@@ -31,6 +31,8 @@ class BasketController < ApplicationController
   end
 
   def clear
+    user_session.clear
+    redirect_to basket_path
   end
 
   def pay

@@ -28,7 +28,9 @@
       </td>
     </tr>
   </table>
-  <p><%= link_to 'Continue shopping', root_path %></p>
+  <p><%= link_to 'Continue shopping', root_path %> | 
+  <%= link_to 'Clear basket', basket_clear_path %>
+  </p>
 <% else %>
    <p>Your basket is now empty, please <%= link_to 'add', root_path %> some items</p>
 <% end %>
