@@ -1,5 +1,6 @@
 <h1>Basket</h1>
 <% if user_session.any? %>
+  <%= render 'items/flash' %>
   <table>
     <tr>
       <th>Item name</th>
@@ -12,6 +13,7 @@
         <td><%= item['name'] %></td>
         <td><%= data['quantity'] %></td>
         <td><%= item['price'] %></td>
+        <td><%= link_to 'Remove item', remove_item_path(item['id']) %></td>
       </tr>
     <% end %>
     <tr>
