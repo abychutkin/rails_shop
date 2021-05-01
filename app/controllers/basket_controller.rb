@@ -3,11 +3,9 @@ class BasketController < ApplicationController
   end
 
   def add_item
-    # Редирект, если пользователь просто заходит на add_item, не добавляя товар
-    if !params.has_key?(:id)
-      flash[:error] = "You need to pick item first"
-      redirect_to root_path
+    if id_absent? "You need to pick item first", root_path
       return
+
     # Редирект если пользователь не указывает количество в url или не заполняет форму
     elsif !params.has_key?(:quantity) || params[:quantity].empty?
       flash[:error] = "You need to specify quantity"
@@ -21,9 +19,7 @@ class BasketController < ApplicationController
   end
 
   def remove_item
-    if !params.has_key?(:id)
-      flash[:error] = "You need specify id of an item you want to remove"
-      redirect_to basket_path
+    if id_absent? "You need specify id of an item you want to remove", basket_path
       return
     end
     user_session.delete(params[:id])
@@ -49,4 +45,15 @@ class BasketController < ApplicationController
     end
     clear
   end
+
+  private
+  def id_absent? message, url
+    # Проверяется наличие параметра id в запросе
+    if !params.has_key?(:id)
+      flash[:error] = message
+      redirect_to url
+      return true
+    end
+    return false
+    end
 end
