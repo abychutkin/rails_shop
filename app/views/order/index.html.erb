@@ -1,0 +1,15 @@
+<h1>Your orders</h1>
+<% if @orders.any? %>
+  <ol>
+    <% @orders.each do |order| %>
+      <% order_date = order.created_at %>
+      <% order_day = sprintf '%02d', order_date.day %>
+      <% order_month = sprintf '%02d', order_date.month %>
+      <% order_year = order_date.year %>
+      <% link_text = "#{order_day}.#{order_month}.#{order_year} - #{pluralize(order.amount, 'item')}" %>
+      <li><%= link_to link_text, order_path(order.id) %></li>
+    <% end %>
+  </ol>
+<% else %>
+  <p>You don't have any orders.</p>
+<% end %>

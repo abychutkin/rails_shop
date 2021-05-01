@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders', to: 'order#index'
+  get 'order/(:id)', as: 'order', to: 'order#show', constraints: {id: /\d+/, quantity: /\d+/}
   get 'basket', to: 'basket#index'
   get 'basket/add_item(/:id)', to: 'basket#add_item', constraints: {id: /\d+/, quantity: /\d+/}
   get 'basket/remove_item(/:id)', as: 'remove_item', to: 'basket#remove_item', constraints: {id: /\d+/, quantity: /\d+/}
