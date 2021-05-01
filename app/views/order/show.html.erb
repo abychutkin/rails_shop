@@ -1,2 +1,27 @@
-<h1>Order#show</h1>
-<p>Find me in app/views/order/show.html.erb</p>
+<h1>Order description</h1>
+<table>
+  <tr>
+    <th>Item name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <% @order.each do |line| %>
+    <% item = line.item %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= line.quantity %></td>
+        <td><%= item.price %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td colspan="2">Total</td>
+    <td>
+      <% total = 0 %>
+      <% @order.each do |line| %>
+      <% item = line.item %>
+      <% total += item.price * line.quantity %>
+      <% end %>
+      <%= total %>
+    </td>
+  </tr>
+</table>

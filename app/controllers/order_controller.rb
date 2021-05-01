@@ -9,6 +9,6 @@ class OrderController < ApplicationController
       redirect_to orders_path
       return
     end
-    @order = Order.find(params[:id])
+    @order = current_user.orders.find(params[:id]).order_descriptions
   end
 end

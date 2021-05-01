@@ -1,37 +1,37 @@
 <h1>Basket</h1>
 <%= render 'partials/flash' %>
 <% if user_session.any? %>
-  <table>
+<table>
+<tr>
+  <th>Item name</th>
+  <th>Quantity</th>
+  <th>Price</th>
+</tr>
+<% user_session.each do |_, data| %>
+  <% item = data['item'] %>
     <tr>
-      <th>Item name</th>
-      <th>Quantity</th>
-      <th>Price</th>
+      <td><%= item['name'] %></td>
+      <td><%= data['quantity'] %></td>
+      <td><%= item['price'] %></td>
+      <td><%= link_to 'Remove item', remove_item_path(item['id']) %></td>
     </tr>
+<% end %>
+<tr>
+  <td colspan="2">Total</td>
+  <td>
+    <% total = 0 %>
     <% user_session.each do |_, data| %>
-      <% item = data['item'] %>
-      <tr>
-        <td><%= item['name'] %></td>
-        <td><%= data['quantity'] %></td>
-        <td><%= item['price'] %></td>
-        <td><%= link_to 'Remove item', remove_item_path(item['id']) %></td>
-      </tr>
+    <% item = data['item'] %>
+    <% total += item['price'].to_f * data['quantity'].to_i %>
     <% end %>
-    <tr>
-      <td colspan="2">Total</td>
-      <td>
-        <% total = 0 %>
-        <% user_session.each do |_, data| %>
-          <% item = data['item'] %>
-          <% total += item['price'].to_f * data['quantity'].to_i %>
-        <% end %>
-        <%= total %>
-      </td>
-    </tr>
-  </table>
-  <p><%= link_to 'Pay your order', basket_pay_path %></p>
-  <p><%= link_to 'Continue shopping', root_path %> | 
-  <%= link_to 'Clear basket', basket_clear_path %>
-  </p>
+    <%= total %>
+  </td>
+</tr>
+</table>
+<p><%= link_to 'Pay your order', basket_pay_path %></p>
+<p><%= link_to 'Continue shopping', root_path %> | 
+<%= link_to 'Clear basket', basket_clear_path %>
+</p>
 <% else %>
    <p>Your basket is now empty, please <%= link_to 'add', root_path %> some items</p>
 <% end %>
