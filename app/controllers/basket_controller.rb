@@ -32,18 +32,21 @@ class BasketController < ApplicationController
   end
 
   def pay
-    if current_user.order.nil?
-      current_user.build_order(amount: 0)
-      current_user.save
+    if user_session.any?
+      order = current_user.orders.build(amount: user_session.length)
+      user_session.each do |_, data|
+        item_id = data['item']['id']
+        item = Item.find(item_id)
+        order_description = order.order_descriptions.build(item: item, quantity: data['quantity'])
+        order_description.save
+        flash[:notice] = "Your order was created"
+      end
+      order.save
+      clear
+    else
+      flash[:error] = "Your basket is empty, you can't create order"
+      return
     end
-    current_user.order.amount += 1
-    current_user.order.save
-    user_session.each do |_, data|
-      item_id = data['item']['id']
-      item = Item.find(item_id)
-      current_user.order.order_descriptions.create(item: item, quantity: data['quantity'])
-    end
-    clear
   end
 
   private
