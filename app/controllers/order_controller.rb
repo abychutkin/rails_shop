@@ -5,7 +5,7 @@ class OrderController < ApplicationController
 
   def show
     if !params.has_key?(:id)
-      flash[:error] = "You need to specify order's id"
+      flash[:error] = "You need to pick order first"
       redirect_to orders_path
       return
     end
