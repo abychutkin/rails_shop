@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'orders', to: 'order#index'
   get 'order/(:id)', as: 'order', to: 'order#show', constraints: {id: /\d+/, quantity: /\d+/}
   get 'basket', to: 'basket#index'
