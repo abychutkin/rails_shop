@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :check_access, only: [:new, :edit, :create, :update, :destroy]
   before_action  :authenticate_user!
 
   # GET /items or /items.json
@@ -66,5 +67,13 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:name, :description, :price)
+    end
+
+    def check_access
+      if !helpers.admin?
+        flash[:errors] = "You don't have access to this page"
+        redirect_to root_path
+        return
+      end
     end
 end
