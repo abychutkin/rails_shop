@@ -12,7 +12,7 @@ class BasketController < ApplicationController
       return
     # Редирект если пользователь не указывает количество в url или не заполняет форму
     elsif !params.has_key?(:quantity) || params[:quantity].empty?
-      flash[:error] = "You need to specify quantity"
+      flash[:alert] = "You need to specify quantity"
       redirect_back(fallback_location: root_path)
       return
     end
@@ -47,7 +47,8 @@ class BasketController < ApplicationController
       order.save
       clear
     else
-      flash[:error] = "Your basket is empty, you can't create order"
+      flash[:alert] = "Your basket is empty, you can't create order"
+      redirect_to basket_path
       return
     end
   end
@@ -56,10 +57,10 @@ class BasketController < ApplicationController
   def id_absent? message, url
     # Проверяется наличие параметра id в запросе
     if !params.has_key?(:id)
-      flash[:error] = message
+      flash[:alert] = message
       redirect_to url
       return true
     end
     return false
-    end
+  end
 end

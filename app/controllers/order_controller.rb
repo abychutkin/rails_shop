@@ -18,7 +18,7 @@ class OrderController < ApplicationController
     ###item = Item.find_by(id: id)
     order = current_user.orders.find_by(id: id)
     if !order
-      flash[:errors] = "Wrong order id"
+      flash[:alert] = "Wrong order id"
       redirect_to orders_path
       return
     end

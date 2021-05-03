@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     def find_item(id)
       item = Item.find_by(id: id)
       if !item
-        flash[:errors] = "Wrong item id"
+        flash[:alert] = "Wrong item id"
         redirect_to root_path
         return
       end
