@@ -5,16 +5,19 @@ class BasketController < ApplicationController
   def add_item
     if id_absent? "You need to pick item first", root_path
       return
-
+    end
+    id = params[:id]
+    item_to_add = find_item(id)
+    if !item_to_add
+      return
     # Редирект если пользователь не указывает количество в url или не заполняет форму
     elsif !params.has_key?(:quantity) || params[:quantity].empty?
       flash[:error] = "You need to specify quantity"
       redirect_back(fallback_location: root_path)
       return
     end
-    id = params[:id]
     quantity = params[:quantity]
-    user_session[id] = {quantity: quantity, item: find_item(id)}
+    user_session[id] = {quantity: quantity, item: item_to_add}
     redirect_to basket_path
   end
 

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   get 'orders', to: 'order#index'
   get 'order/(:id)', as: 'order', to: 'order#show'
   get 'basket', to: 'basket#index'
-  get 'basket/add_item(/:id)', to: 'basket#add_item', constraints: {id: /\d+/, quantity: /\d+/}
-  get 'basket/remove_item(/:id)', as: 'remove_item', to: 'basket#remove_item', constraints: {id: /\d+/, quantity: /\d+/}
+  get 'basket/add_item(/:id)', to: 'basket#add_item'
+  get 'basket/remove_item(/:id)', as: 'remove_item', to: 'basket#remove_item'
   get 'basket/clear'
   get 'basket/pay'
   resources :items, only: [:index, :show]
