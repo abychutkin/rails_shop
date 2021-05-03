@@ -14,7 +14,7 @@ class BasketController < ApplicationController
     end
     id = params[:id]
     quantity = params[:quantity]
-    user_session[id] = {quantity: quantity, item: Item.find(id)}
+    user_session[id] = {quantity: quantity, item: find_item(id)}
     redirect_to basket_path
   end
 
@@ -36,7 +36,7 @@ class BasketController < ApplicationController
       order = current_user.orders.build(amount: user_session.length)
       user_session.each do |_, data|
         item_id = data['item']['id']
-        item = Item.find(item_id)
+        item = find_item(item_id)
         order_description = order.order_descriptions.build(item: item, quantity: data['quantity'])
         order_description.save
         flash[:notice] = "Your order was created"
