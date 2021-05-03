@@ -11,7 +11,7 @@ class BasketController < ApplicationController
     if !item_to_add
       return
     # Редирект если пользователь не указывает количество в url или не заполняет форму
-    elsif !params.has_key?(:quantity) || params[:quantity].empty?
+    elsif !params.has_key?(:quantity) || params[:quantity].empty? || params[:quantity].to_i < 0
       flash[:alert] = "You need to specify quantity"
       redirect_back(fallback_location: root_path)
       return
