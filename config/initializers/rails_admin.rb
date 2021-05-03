@@ -40,6 +40,6 @@ RailsAdmin.config do |config|
   end
   config.authenticate_with do
     # Redirect users
-    redirect_to main_app.root_path unless current_user.role == 'admin'
+    redirect_to main_app.root_path unless !current_user.nil? && current_user.role == 'admin'
   end
 end
