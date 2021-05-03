@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'basket/remove_item(/:id)', as: 'remove_item', to: 'basket#remove_item', constraints: {id: /\d+/, quantity: /\d+/}
   get 'basket/clear'
   get 'basket/pay'
-  resources :items
+  resources :items, only: [:index, :show]
   devise_for :users
   root 'items#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

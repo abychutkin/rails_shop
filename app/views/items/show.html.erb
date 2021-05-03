@@ -22,7 +22,4 @@
   <%= f.submit('Add to card') %>
 <% end %>
 
-<% if admin? %>
-  <%= link_to 'Edit', edit_item_path(@item) %> |
-<% end %>
 <%= link_to 'Back', items_path %>

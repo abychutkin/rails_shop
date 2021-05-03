@@ -19,15 +19,7 @@
         <td><%= item.description %></td>
         <td><%= item.price %></td>
         <td><%= link_to 'Add to basket', item %></td>
-        <% if admin? %>
-          <td><%= link_to 'Edit', edit_item_path(item) %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-<% if admin? %>
-  <br>
-  <%= link_to 'New Item', new_item_path %>
-<% end %>
