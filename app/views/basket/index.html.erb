@@ -1,10 +1,10 @@
-<h1>Basket</h1>
+<h1 class="title has-text-centered">Basket</h1>
 <% if user_session.any? %>
-<table>
+<table class="table is-fullwidth">
 <tr>
   <th>Item name</th>
   <th>Quantity</th>
-  <th>Price</th>
+  <th colspan="2">Price</th>
 </tr>
 <% user_session.each do |_, data| %>
   <% item = data['item'] %>
@@ -27,10 +27,15 @@
   </td>
 </tr>
 </table>
-<p><%= link_to 'Pay your order', basket_pay_path %></p>
-<p><%= link_to 'Continue shopping', root_path %> | 
-<%= link_to 'Clear basket', basket_clear_path %>
-</p>
+<%= link_to 'Pay your order', basket_pay_path, class: "button is-primary" %>
+<footer>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <%= link_to 'Continue shopping', root_path, class: "navbar-item" %> 
+      <%= link_to 'Clear basket', basket_clear_path, class: "navbar-item" %>
+    </div>
+  </nav>
+</footer>
 <% else %>
    <p>Your basket is now empty, please <%= link_to 'add', root_path %> some items</p>
 <% end %>
