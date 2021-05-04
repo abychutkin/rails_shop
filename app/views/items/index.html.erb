@@ -1,21 +1,19 @@
-<h1>Items</h1>
-<table>
+<h1 class="title has-text-centered">Items</h1>
+<table class="table is-fullwidth">
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.name %></td>
+        <td><%= link_to item.name, item %></td>
         <td><%= item.description %></td>
         <td><%= item.price %></td>
-        <td><%= link_to 'Add to basket', item %></td>
       </tr>
     <% end %>
   </tbody>
