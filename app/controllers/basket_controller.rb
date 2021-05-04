@@ -39,9 +39,9 @@ class BasketController < ApplicationController
     if user_session.any?
       order = current_user.orders.build(amount: user_session.length)
       user_session.each do |_, data|
-        item_id = data['item']['id']
+        item_id = data["item"]["id"]
         item = find_item(item_id)
-        order_description = order.order_descriptions.build(item: item, quantity: data['quantity'])
+        order_description = order.order_descriptions.build(item: item, quantity: data["quantity"])
         order_description.save
         flash[:notice] = "Your order was created"
       end
