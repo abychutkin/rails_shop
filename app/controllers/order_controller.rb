@@ -9,7 +9,6 @@ class OrderController < ApplicationController
 
   private
   def find_order(id)
-    ###item = Item.find_by(id: id)
     order = current_user.orders.find_by(id: id)
     if !order
       flash[:alert] = "Wrong order id"
