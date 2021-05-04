@@ -7,12 +7,12 @@
   <th colspan="2">Price</th>
 </tr>
 <% user_session.each do |_, data| %>
-  <% item = data['item'] %>
+  <% item = data["item"] %>
     <tr>
-      <td><%= item['name'] %></td>
-      <td><%= data['quantity'] %></td>
-      <td><%= item['price'] %></td>
-      <td><%= link_to 'Remove item', remove_item_path(item['id']) %></td>
+      <td><%= item["name"] %></td>
+      <td><%= data["quantity"] %></td>
+      <td><%= item["price"] %></td>
+      <td><%= link_to "Remove item", remove_item_path(item["id"]) %></td>
     </tr>
 <% end %>
 <tr>
@@ -20,22 +20,22 @@
   <td>
     <% total = 0 %>
     <% user_session.each do |_, data| %>
-    <% item = data['item'] %>
-    <% total += item['price'].to_f * data['quantity'].to_i %>
+    <% item = data["item"] %>
+    <% total += item["price"].to_f * data["quantity"].to_i %>
     <% end %>
     <%= total %>
   </td>
 </tr>
 </table>
-<%= link_to 'Pay your order', basket_pay_path, class: "button is-primary" %>
+<%= link_to "Pay your order", basket_pay_path, class: "button is-primary" %>
 <footer>
   <nav class="navbar">
     <div class="navbar-brand">
-      <%= link_to 'Continue shopping', root_path, class: "navbar-item" %> 
-      <%= link_to 'Clear basket', basket_clear_path, class: "navbar-item" %>
+      <%= link_to "Continue shopping", root_path, class: "navbar-item" %> 
+      <%= link_to "Clear basket", basket_clear_path, class: "navbar-item" %>
     </div>
   </nav>
 </footer>
 <% else %>
-   <p>Your basket is now empty, please <%= link_to 'add', root_path %> some items</p>
+   <p>Your basket is now empty, please <%= link_to "add", root_path %> some items</p>
 <% end %>
