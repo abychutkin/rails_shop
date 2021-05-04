@@ -1,22 +1,38 @@
-<p>
+<div class="columns is-centered">
+<div class="column is-4 mt-6">
+<p class="mb-2">
   <strong>Name:</strong>
   <%= @item.name %>
 </p>
 
-<p>
+<p class="mb-2">
   <strong>Description:</strong>
   <%= @item.description %>
 </p>
 
-<p>
+<p class="mb-2">
   <strong>Price:</strong>
   <%= @item.price %>
 </p>
 
-<%= form_with(url: "/basket/add_item/#{@item.id}", method: 'get', local: true) do |f| %>
-  <%= f.label(:quantity, 'Quantity') %>
-  <%= f.number_field(:quantity, id: :quantity) %>
-  <%= f.submit('Add to card') %>
+<%= form_with(url: "/basket/add_item/#{@item.id}", method: "get", local: true, html: {class: "block"}) do |f| %>
+  <div class="field">
+    <div class="columns">
+      <div class="column is-3">
+        <%= f.label(:quantity, "Quantity", class: "label") %>
+      </div>
+      <div class="column is-5">
+        <div class="control">
+          <%= f.number_field(:quantity, id: :quantity, class: "input") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control">
+    <%= f.submit("Add to basket", class: "button is-primary") %>
+  </div>
 <% end %>
 
-<%= link_to 'Back', items_path %>
+<%= link_to "Back", items_path %>
+</div>
+</div>
