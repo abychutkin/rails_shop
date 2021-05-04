@@ -21,10 +21,17 @@
       <p class="notification is-danger  has-text-centered"><%= alert %></p>
     <% end %>
     <% if user_signed_in? %>
-      <%= link_to 'Profile',  edit_user_registration_path %> |
-      <%= link_to 'Basket', basket_path %> |
-      <%= link_to 'Orders', orders_path %>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      <header>
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <%= link_to "Home", root_path, class: "navbar-item" %>
+            <%= link_to 'Profile',  edit_user_registration_path, class: "navbar-item" %>
+            <%= link_to 'Basket', basket_path, class: "navbar-item" %>
+            <%= link_to 'Orders', orders_path, class: "navbar-item" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "navbar-item" %>
+          </div>
+        </nav>
+      </header>
     <% end %>
     <%= yield %>
     </div>
