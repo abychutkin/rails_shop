@@ -4,12 +4,6 @@ class OrderController < ApplicationController
   end
 
   def show
-    ###if !params.has_key?(:id)
-    ###  flash[:error] = "You need to pick order first"
-    ###  redirect_to orders_path
-    ###  return
-    ###end
-    ###@order = current_user.orders.find(params[:id]).order_descriptions
     @order = find_order(params[:id])
   end
 
