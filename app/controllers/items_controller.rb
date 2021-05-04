@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action  :authenticate_user!
 
   # GET /items or /items.json
   def index
