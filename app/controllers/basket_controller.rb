@@ -10,9 +10,10 @@ class BasketController < ApplicationController
     item_to_add = find_item(id)
     if !item_to_add
       return
-    # Редирект если пользователь не указывает количество в url или не заполняет форму
-    elsif !params.has_key?(:quantity) || params[:quantity].empty? || params[:quantity].to_i < 0
-      flash[:alert] = "You need to specify quantity"
+    # Редирект если пользователь не указывает количество в url или неправильно заполняет форму
+    elsif !params.has_key?(:quantity) || params[:quantity].empty? || params[:quantity].to_i < 0 ||
+      !params[:quantity].scan(/\D/).empty?
+        flash[:alert] = "You need to specify quantity and it must be integer number"
       redirect_back(fallback_location: root_path)
       return
     end
