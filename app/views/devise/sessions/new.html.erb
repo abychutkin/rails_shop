@@ -4,14 +4,14 @@
   <div class="column is-one-third">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'block'}) do |f| %>
     <div class="field">
-      <%= f.label :email, class: 'label' %><br />
+      <%= f.label :email, class: 'label' %>
       <div class="control">
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
       </div>
     </div>
 
     <div class="field">
-      <%= f.label :password, class: 'label' %><br />
+      <%= f.label :password, class: 'label' %>
       <div class="control">
         <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
       </div>
