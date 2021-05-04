@@ -14,8 +14,12 @@
   <body>
     <section class="section">
     <div class="container">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+      <p class="notification is-primary"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="notification is-danger  has-text-centered"><%= alert %></p>
+    <% end %>
     <% if user_signed_in? %>
       <%= link_to 'Profile',  edit_user_registration_path %> |
       <%= link_to 'Basket', basket_path %> |
