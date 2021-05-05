@@ -3,6 +3,7 @@ class BasketController < ApplicationController
   end
 
   def add_item
+    # Добавление товара в сессию
     if id_absent? "You need to pick item first", root_path
       return
     end
@@ -23,6 +24,7 @@ class BasketController < ApplicationController
   end
 
   def remove_item
+    # Удаление товара из сессии
     if id_absent? "You need specify id of an item you want to remove", basket_path
       return
     end
@@ -31,11 +33,13 @@ class BasketController < ApplicationController
   end
 
   def clear
+    # Очистка сессии
     user_session.clear
     redirect_to basket_path
   end
 
   def pay
+    # Перенос сессии в базу
     if user_session.any?
       order = current_user.orders.build(amount: user_session.length)
       user_session.each do |_, data|

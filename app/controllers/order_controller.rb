@@ -9,6 +9,7 @@ class OrderController < ApplicationController
 
   private
   def find_order(id)
+    # Поиск заказа без исключения при неправильном id
     order = current_user.orders.find_by(id: id)
     if !order
       flash[:alert] = "Wrong order id"
